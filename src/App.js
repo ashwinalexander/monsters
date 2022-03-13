@@ -11,6 +11,11 @@ class App extends Component {
     this.state = {
       monsters: [],
       searchField: '',
+      newName: {
+        firstName: 'firstname',
+        lastName: 'lastName',
+      },
+      company: 'ZTM',
     };
 
     // //.bind() returns a new function
@@ -30,21 +35,29 @@ class App extends Component {
   };
 
   render() {
-    const { monsters, searchField } = this.state;
+    const { monsters, searchField, title, newName, company } = this.state;
     const filteredMonsters = monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchField.toLowerCase())
     );
 
     return (
       <div className='App'>
-        <h1>
-       Monsters Rolodex   
-       </h1>
+        <h1 className='app-title'>Monsters Rolodex</h1>
+
         <SearchBox
+          className='search-box'
           placeholder='search monsters'
           handleChange={this.handleChange}
         />
         <CardList monsters={filteredMonsters} />
+
+        {this.state.monsters.map((monster) => {
+          return (
+            <div key={monster.id}>
+              <h1>{monster.name}</h1>
+            </div>
+          );
+        })}
       </div>
     );
   }
