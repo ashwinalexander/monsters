@@ -1,4 +1,3 @@
-import React from 'react';
 import './search-box.styles.css';
 
 //func component: no internal state or access to lifecycle methods

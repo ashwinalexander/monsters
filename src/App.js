@@ -8,6 +8,7 @@ const App = () => {
   //useState gives us the ability to encapsulate local state in a functional component
   //re-render only when state changes
   const [searchField, setSearchField] = useState(''); //value we want to store, setter function
+  const [title, setTitle] = useState('place title');
   const [monsters, setMonsters] = useState([]); //value we want to store, setter function
   const [stringField, setStringField] = useState('');
   const [filteredMonsters, setFilteredMonsters] = useState(monsters);
@@ -37,76 +38,24 @@ const App = () => {
     setSearchField(searchFieldString);
   };
 
+  const onTitleChange = (event) => {
+    const titleString = event.target.value.toLowerCase();
+    setTitle(titleString);
+  };
+
   return (
     <div className='App'>
-      <h1 className='app-title'>Monsters Rolodex</h1>
+      <h1 className='app-title'>{title}</h1>
       <SearchBox
         className='search-box'
         placeholder='search monsters'
         handleChange={onSearchChange}
       />
+      <br />
 
       <CardList monsters={filteredMonsters} />
     </div>
   );
 };
 
-//   constructor() {
-//     //extending functionality from Component
-//     super();
-
-//     this.state = {
-//       monsters: [],
-//       searchField: '',
-//       newName: {
-//         firstName: 'firstname',
-//         lastName: 'lastName',
-//       },
-//       company: 'ZTM',
-//     };
-
-//     // //.bind() returns a new function
-//     // this.handleChange = this.handleChange.bind(this);
-//   }
-
-//   componentDidMount() {
-//     fetch('https://jsonplaceholder.typicode.com/users')
-//       .then((response) => response.json())
-//       .then((users) => this.setState({ monsters: users }));
-//   }
-
-//   //arrow funcs automatically binds arrow function to app component
-//   //automatically get lexical scoping
-//   handleChange = (e) => {
-//     this.setState({ searchField: e.target.value });
-//   };
-
-//   render() {
-//     const { monsters, searchField, title, newName, company } = this.state;
-//     const filteredMonsters = monsters.filter((monster) =>
-//       monster.name.toLowerCase().includes(searchField.toLowerCase())
-//     );
-
-//     return (
-//       <div className='App'>
-//         <h1 className='app-title'>Monsters Rolodex</h1>
-
-//         <SearchBox
-//           className='search-box'
-//           placeholder='search monsters'
-//           handleChange={this.handleChange}
-//         />
-//         <CardList monsters={filteredMonsters} />
-
-//         {this.state.monsters.map((monster) => {
-//           return (
-//             <div key={monster.id}>
-//               <h1>{monster.name}</h1>
-//             </div>
-//           );
-//         })}
-//       </div>
-//     );
-//   }
-// }
 export default App;
