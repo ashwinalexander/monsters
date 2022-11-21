@@ -1,5 +1,5 @@
 import "./search-box.styles.css";
-import { ChangeEventHandler } from "react";
+import { ChangeEvent } from "react";
 
 const func: (a: string, b: number, c: boolean) => void = (a, b, c) => {}; //function
 
@@ -12,7 +12,7 @@ const func: (a: string, b: number, c: boolean) => void = (a, b, c) => {}; //func
 type SearchBoxProps = {
   className: string;
   placeholder?: string;
-  handleChange: ChangeEventHandler<HTMLInputElement>;
+  handleChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 //func component: no internal state or access to lifecycle methods
